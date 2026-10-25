@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+/* ============================================================
+   HospitalOS — Unified Design System (Single Source of Truth)
+   All color values live here as CSS variables.
+   Components should reference these variables via Tailwind
+   custom utilities or direct var() — never hardcode hex values.
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* ── Shell / Navigation (Deep Navy) ── */
+    --shell-bg-deep:      #040f1c;
+    --shell-bg-sidebar:   #071428;
+    --shell-bg-header:    #040f1c;
+    --shell-bg-hover:     #0d2240;
+    --shell-bg-active:    #0e2f57;
+    --shell-border:       #142b4a;
+    --shell-text-muted:   #7a94b8;
+    --shell-text-bright:  #f0f6ff;
+
+    /* ── Accent / Brand (Cyan-Teal) ── */
+    --accent-50:          #ecfeff;
+    --accent-100:         #cffafe;
+    --accent-300:         #67e8f9;
+    --accent-400:         #22d3ee;
+    --accent-500:         #06b6d4;
+    --accent-600:         #0891b2;
+    --accent-700:         #0e7490;
+    --accent-800:         #155e75;
+    --accent-900:         #164e63;
+
+    /* ── Light-mode Surfaces ── */
+    --surface-canvas:     #f5f7fa;
+    --surface-panel:      #ffffff;
+    --surface-subtle:     #f0f4f8;
+    --surface-muted:      #e2e8f0;
+    --surface-border:     #e2e8f0;
+    --surface-border-dark:#cbd5e1;
+
+    /* ── Typography ── */
+    --text-primary:       #0d1b2e;
+    --text-secondary:     #2c4264;
+    --text-muted:         #5d7a9e;
+    --text-disabled:      #94a3b8;
+    --text-inverse:       #ffffff;
+
+    /* ── Clinical Status Tokens ── */
+    --clinical-stable-bg:     #f0fdf4;
+    --clinical-stable-text:   #14532d;
+    --clinical-stable-border: #bbf7d0;
+    --clinical-stable-solid:  #16a34a;
+
+    --clinical-warning-bg:    #fffbeb;
+    --clinical-warning-text:  #78350f;
+    --clinical-warning-border:#fde68a;
+    --clinical-warning-solid: #d97706;
+
+    --clinical-urgent-bg:     #fff7ed;
+    --clinical-urgent-text:   #7c2d12;
+    --clinical-urgent-border: #fed7aa;
+    --clinical-urgent-solid:  #ea580c;
+
+    --clinical-critical-bg:   #fff1f2;
+    --clinical-critical-text: #881337;
+    --clinical-critical-border:#fecdd3;
+    --clinical-critical-solid:#dc2626;
+
+    --clinical-routine-bg:    #eff6ff;
+    --clinical-routine-text:  #1e3a8a;
+    --clinical-routine-border:#bfdbfe;
+    --clinical-routine-solid: #2563eb;
+
+    --clinical-inactive-bg:   #f8fafc;
+    --clinical-inactive-text: #475569;
+    --clinical-inactive-border:#e2e8f0;
+    --clinical-inactive-solid:#64748b;
+
+    /* ── Nav Active State ── */
+    --nav-active-bg:     rgba(6, 182, 212, 0.14);
+    --nav-active-border: #22d3ee;
+    --nav-active-text:   #67e8f9;
+
+    /* ── Focus ring ── */
+    --focus-ring-color:  #0891b2;
+  }
+
+  .dark {
+    /* ── Dark-mode Surfaces ── */
+    --surface-canvas:     #040f1c;
+    --surface-panel:      #071428;
+    --surface-subtle:     #0d2240;
+    --surface-muted:      #142b4a;
+    --surface-border:     #142b4a;
+    --surface-border-dark:#1e3e6b;
+
+    /* ── Dark-mode Typography ── */
+    --text-primary:       #f0f6ff;
+    --text-secondary:     #94b4d6;
+    --text-muted:         #627d9e;
+    --text-disabled:      #3d5675;
+    --text-inverse:       #040f1c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    background-color: var(--surface-canvas);
+    color: var(--text-primary);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  [dir="rtl"] {
+    font-family: "IBM Plex Sans Arabic", "Cairo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  [dir="ltr"] {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+}
+
+/* ============================================================
+   Scrollbars
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-border-dark);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Dark shell scrollbar */
+.dark-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--shell-bg-active) transparent;
+}
+.dark-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.dark-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--shell-bg-active);
+  border-radius: 4px;
+}
+.dark-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--shell-bg-hover);
+}
+
+/* ============================================================
+   Shell Navigation Utility Classes
+   Used by sidebar & top-nav — replaces hardcoded hex values.
+   ============================================================ */
+.shell-bg-deep    { background-color: var(--shell-bg-deep);    }
+.shell-bg-sidebar { background-color: var(--shell-bg-sidebar); }
+.shell-bg-hover   { background-color: var(--shell-bg-hover);   }
+.shell-bg-active  { background-color: var(--shell-bg-active);  }
+.shell-border     { border-color: var(--shell-border);         }
+.shell-text-muted  { color: var(--shell-text-muted);  }
+.shell-text-bright { color: var(--shell-text-bright); }
+
+/* Surface Utilities */
+.surface-canvas { background-color: var(--surface-canvas); }
+.surface-panel  { background-color: var(--surface-panel); border-color: var(--surface-border); }
+.surface-subtle { background-color: var(--surface-subtle); }
+.surface-card   {
+  background-color: var(--surface-panel);
+  border-color: var(--surface-border);
+  color: var(--text-primary);
+}
+
+/* Nav item states */
+.nav-item-active {
+  background-color: var(--nav-active-bg);
+  color: var(--nav-active-text);
+  font-weight: 600;
+  border-inline-start: 2px solid var(--nav-active-border);
+  padding-inline-start: calc(0.625rem - 2px);
+}
+.nav-item-inactive {
+  color: var(--shell-text-muted);
+}
+.nav-item-inactive:hover {
+  background-color: var(--shell-bg-hover);
+  color: var(--shell-text-bright);
+}
+
+/* ============================================================
+   Clinical Animations
+   ============================================================ */
+@keyframes clinical-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
+}
+.animate-clinical-pulse {
+  animation: clinical-glow 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.2s ease-out both;
+}
+
+/* Print Layout Optimization for Clinical Records, Charts & Discharge Summaries */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .no-print,
+  nav,
+  aside,
+  header button,
+  .notification-center,
+  .search-modal {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  th, td {
+    border: 1px solid #cbd5e1 !important;
+    padding: 6px 8px !important;
+  }
+
+  @page {
+    margin: 1.5cm;
+    size: A4 portrait;
+  }
+}
